@@ -4,6 +4,10 @@
  * Created: 5/25/2023 10:07:15 PM
  *  Author: Mahmoud Sarhan
  */ 
+
+#define F_CPU 8000000UL
+#include <util/delay.h>
+#include <avr/io.h>
 #include "../HAL/led/led.h"
 #include "../SERV/bcm/bcm.h"
 
@@ -63,6 +67,29 @@ void APP_start(void)
 	APP_init();
 	while(1)
 	{
+		
+		
+		_delay_ms(1000);
+		u8_gs_send_string_result = BCM_dispatcher(&st_bcm_instance_send_string);
+		if (u8_gs_send_string_result == 0)
+		{
+			LED_toggle(LED_0);
+			u8_gs_send_string_result = 1;
+			//_delay_ms(2000);
+		}
+		//PORTB = u8_gs_rec_string_result;
+		//_delay_ms(1000);
+		u8_gs_rec_string_result = BCM_dispatcher(&st_bcm_instance_rec_string);
+		//PORTB = u8_gs_rec_string_result;
+		if (u8_gs_rec_string_result == 0)
+		{
+			LED_toggle(LED_1);
+			u8_gs_rec_string_result = 1;
+		}
+		
+		
+		
+		/*
 		u8_gs_send_string_result = BCM_dispatcher(&st_bcm_instance_send_string);
 		if (u8_gs_send_string_result == 0)
 		{
@@ -70,11 +97,11 @@ void APP_start(void)
 			u8_gs_send_string_result = 1;
 		}
 		
-		u8_gs_rec_string_result = BCM_dispatcher(&st_bcm_instance_rec_string);
-		if (u8_gs_rec_string_result == 0)
+		u8_gs_rec_byte_result = BCM_dispatcher(&st_bcm_instance_rec_byte);
+		if (u8_gs_rec_byte_result == 0)
 		{
 			LED_toggle(LED_1);
-			u8_gs_rec_string_result = 1;
+			u8_gs_rec_byte_result = 1;
 		}
 		
 		u8_gs_send_byte_result = BCM_dispatcher(&st_bcm_instance_send_byte);
@@ -84,12 +111,7 @@ void APP_start(void)
 			u8_gs_send_byte_result = 1;
 		}
 		
-		u8_gs_rec_byte_result = BCM_dispatcher(&st_bcm_instance_rec_byte);
-		if (u8_gs_rec_byte_result == 0)
-		{
-			LED_toggle(LED_1);
-			u8_gs_rec_byte_result = 1;
-		}
+		*/
 	}
 }
 
@@ -97,7 +119,9 @@ void APP_start(void)
 
 void APP_init(void)
 {
+	//DDRB = 0xff;
 	BCM_init(&st_bcm_instance_send_string);
 	LED_init(LED_0);
+	//LED_on(LED_0);
 	LED_init(LED_1);
 }

@@ -200,6 +200,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 							case UART:
 							{
 								u8_retVal = BCM_send(st_bcm_instance_t);
+								break;
 							}
 							default:
 							{
@@ -207,6 +208,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 								break;
 							}
 						}
+						break;
 					}
 					case STRING:
 					{
@@ -215,6 +217,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 							case UART:
 							{
 								u8_retVal = BCM_send_n(st_bcm_instance_t);
+								break;
 							}
 							default:
 							{
@@ -222,6 +225,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 								break;
 							}
 						}
+						break;
 					}
 					default:
 					{
@@ -230,6 +234,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 					}
 					
 				}
+				break;
 			}
 			case REC:
 			{
@@ -242,6 +247,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 							case UART:
 							{
 								u8_retVal = BCM_rec(st_bcm_instance_t);
+								break;
 							}
 							default:
 							{
@@ -249,6 +255,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 								break;
 							}
 						}
+						break;
 					}
 					case STRING:
 					{
@@ -257,6 +264,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 							case UART:
 							{
 								u8_retVal = BCM_rec_n(st_bcm_instance_t);
+								break;
 							}
 							default:
 							{
@@ -264,6 +272,7 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 								break;
 							}
 						}
+						break;
 					}
 					default:
 					{
@@ -272,12 +281,15 @@ u8_bcmError_t BCM_dispatcher(st_bcm_instance_t* st_bcm_instance_t)
 					}
 					
 				}
+				break;
 			}
+			
 			default:
 			{
 				u8_retVal = BCM_ERROR_NOT_OK;
 				break;
 			}
+			
 		}
 	}
 	return u8_retVal;

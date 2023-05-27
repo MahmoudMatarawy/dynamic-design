@@ -1,0 +1,315 @@
+
+BCM.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001ca  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000f8  00800060  000001ca  0000025e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800158  00800158  00000356  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000356  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000388  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000068  00000000  00000000  000003c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000bfa  00000000  00000000  0000042c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006a2  00000000  00000000  00001026  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000044a  00000000  00000000  000016c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c0  00000000  00000000  00001b14  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004f7  00000000  00000000  00001bd4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000042f  00000000  00000000  000020cb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000060  00000000  00000000  000024fa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea ec       	ldi	r30, 0xCA	; 202
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 35       	cpi	r26, 0x58	; 88
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	a8 e5       	ldi	r26, 0x58	; 88
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a9 35       	cpi	r26, 0x59	; 89
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 e3 00 	jmp	0x1c6	; 0x1c6 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+ * Author : Mahmoud Sarhan
+ */ 
+#include "MCAL/uart/uart.h"
+int main(void)
+{
+	UART_init(UART0);
+  92:	80 e0       	ldi	r24, 0x00	; 0
+  94:	0e 94 9e 00 	call	0x13c	; 0x13c <UART_init>
+	UART_write_string((uint8_t *)" Enter .",UART0);
+  98:	60 e0       	ldi	r22, 0x00	; 0
+  9a:	80 e6       	ldi	r24, 0x60	; 96
+  9c:	90 e0       	ldi	r25, 0x00	; 0
+  9e:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+  a2:	60 e0       	ldi	r22, 0x00	; 0
+  a4:	8d e0       	ldi	r24, 0x0D	; 13
+  a6:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 1 For : Adding user . ",UART0);
+  aa:	60 e0       	ldi	r22, 0x00	; 0
+  ac:	89 e6       	ldi	r24, 0x69	; 105
+  ae:	90 e0       	ldi	r25, 0x00	; 0
+  b0:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+  b4:	60 e0       	ldi	r22, 0x00	; 0
+  b6:	8d e0       	ldi	r24, 0x0D	; 13
+  b8:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 2 For : Deleting user . ",UART0);
+  bc:	60 e0       	ldi	r22, 0x00	; 0
+  be:	81 e8       	ldi	r24, 0x81	; 129
+  c0:	90 e0       	ldi	r25, 0x00	; 0
+  c2:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+  c6:	60 e0       	ldi	r22, 0x00	; 0
+  c8:	8d e0       	ldi	r24, 0x0D	; 13
+  ca:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 3 For : Opening the gate . ",UART0);
+  ce:	60 e0       	ldi	r22, 0x00	; 0
+  d0:	8b e9       	ldi	r24, 0x9B	; 155
+  d2:	90 e0       	ldi	r25, 0x00	; 0
+  d4:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+  d8:	60 e0       	ldi	r22, 0x00	; 0
+  da:	8d e0       	ldi	r24, 0x0D	; 13
+  dc:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 4 For : Closing the gate . ",UART0);
+  e0:	60 e0       	ldi	r22, 0x00	; 0
+  e2:	88 eb       	ldi	r24, 0xB8	; 184
+  e4:	90 e0       	ldi	r25, 0x00	; 0
+  e6:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+  ea:	60 e0       	ldi	r22, 0x00	; 0
+  ec:	8d e0       	ldi	r24, 0x0D	; 13
+  ee:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 5 For : Users information . ",UART0);
+  f2:	60 e0       	ldi	r22, 0x00	; 0
+  f4:	85 ed       	ldi	r24, 0xD5	; 213
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+  fc:	60 e0       	ldi	r22, 0x00	; 0
+  fe:	8d e0       	ldi	r24, 0x0D	; 13
+ 100:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 6 For : changing user's password .",UART0);
+ 104:	60 e0       	ldi	r22, 0x00	; 0
+ 106:	83 ef       	ldi	r24, 0xF3	; 243
+ 108:	90 e0       	ldi	r25, 0x00	; 0
+ 10a:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+ 10e:	60 e0       	ldi	r22, 0x00	; 0
+ 110:	8d e0       	ldi	r24, 0x0D	; 13
+ 112:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 7 For : Stopping the Buzzer .",UART0);
+ 116:	60 e0       	ldi	r22, 0x00	; 0
+ 118:	87 e1       	ldi	r24, 0x17	; 23
+ 11a:	91 e0       	ldi	r25, 0x01	; 1
+ 11c:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+ 120:	60 e0       	ldi	r22, 0x00	; 0
+ 122:	8d e0       	ldi	r24, 0x0D	; 13
+ 124:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	UART_write_string((uint8_t *)" 8 For : Setting time and date .",UART0);
+ 128:	60 e0       	ldi	r22, 0x00	; 0
+ 12a:	86 e3       	ldi	r24, 0x36	; 54
+ 12c:	91 e0       	ldi	r25, 0x01	; 1
+ 12e:	0e 94 bf 00 	call	0x17e	; 0x17e <UART_write_string>
+	UART_tx(13,UART0);
+ 132:	60 e0       	ldi	r22, 0x00	; 0
+ 134:	8d e0       	ldi	r24, 0x0D	; 13
+ 136:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+ 13a:	ff cf       	rjmp	.-2      	; 0x13a <main+0xa8>
+
+0000013c <UART_init>:
+			break;
+		}
+	}
+	
+	return u8_retVal ;
+}
+ 13c:	81 11       	cpse	r24, r1
+ 13e:	0e c0       	rjmp	.+28     	; 0x15c <UART_init+0x20>
+ 140:	10 bc       	out	0x20, r1	; 32
+ 142:	83 e3       	ldi	r24, 0x33	; 51
+ 144:	89 b9       	out	0x09, r24	; 9
+ 146:	8a b1       	in	r24, 0x0a	; 10
+ 148:	88 61       	ori	r24, 0x18	; 24
+ 14a:	8a b9       	out	0x0a, r24	; 10
+ 14c:	80 b5       	in	r24, 0x20	; 32
+ 14e:	86 68       	ori	r24, 0x86	; 134
+ 150:	80 bd       	out	0x20, r24	; 32
+ 152:	81 e0       	ldi	r24, 0x01	; 1
+ 154:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <__data_end>
+ 158:	80 e0       	ldi	r24, 0x00	; 0
+ 15a:	08 95       	ret
+ 15c:	84 e0       	ldi	r24, 0x04	; 4
+ 15e:	08 95       	ret
+
+00000160 <UART_tx>:
+ 160:	61 11       	cpse	r22, r1
+ 162:	09 c0       	rjmp	.+18     	; 0x176 <UART_tx+0x16>
+ 164:	90 91 58 01 	lds	r25, 0x0158	; 0x800158 <__data_end>
+ 168:	91 30       	cpi	r25, 0x01	; 1
+ 16a:	39 f4       	brne	.+14     	; 0x17a <UART_tx+0x1a>
+ 16c:	5d 9b       	sbis	0x0b, 5	; 11
+ 16e:	fe cf       	rjmp	.-4      	; 0x16c <UART_tx+0xc>
+ 170:	8c b9       	out	0x0c, r24	; 12
+ 172:	80 e0       	ldi	r24, 0x00	; 0
+ 174:	08 95       	ret
+ 176:	84 e0       	ldi	r24, 0x04	; 4
+ 178:	08 95       	ret
+ 17a:	84 e0       	ldi	r24, 0x04	; 4
+ 17c:	08 95       	ret
+
+0000017e <UART_write_string>:
+
+
+
+
+u8_uartErrorType UART_write_string( uint8_t *n , en_uartNum_t uartNum)
+{
+ 17e:	0f 93       	push	r16
+ 180:	1f 93       	push	r17
+ 182:	cf 93       	push	r28
+ 184:	df 93       	push	r29
+	uint8_t u8_retVal = UART_ERROR_OK;
+	switch(uartNum)
+ 186:	61 11       	cpse	r22, r1
+ 188:	18 c0       	rjmp	.+48     	; 0x1ba <UART_write_string+0x3c>
+	{
+		case UART0:
+		{
+			if (u8_uart_state[UART0] == INIT)
+ 18a:	20 91 58 01 	lds	r18, 0x0158	; 0x800158 <__data_end>
+ 18e:	21 30       	cpi	r18, 0x01	; 1
+ 190:	39 f0       	breq	.+14     	; 0x1a0 <UART_write_string+0x22>
+					u8_retVal = UART_tx(n[x],uartNum);
+				}
+				u8_retVal = UART_tx('\0',uartNum);
+			}
+			else{
+				u8_retVal = UART_ERROR_NOT_OK;
+ 192:	84 e0       	ldi	r24, 0x04	; 4
+ 194:	13 c0       	rjmp	.+38     	; 0x1bc <UART_write_string+0x3e>
+		{
+			if (u8_uart_state[UART0] == INIT)
+			{
+				for (uint8_t x=0 ; n[x]!='\0' ; x++)
+				{
+					u8_retVal = UART_tx(n[x],uartNum);
+ 196:	6c 2f       	mov	r22, r28
+ 198:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+	{
+		case UART0:
+		{
+			if (u8_uart_state[UART0] == INIT)
+			{
+				for (uint8_t x=0 ; n[x]!='\0' ; x++)
+ 19c:	df 5f       	subi	r29, 0xFF	; 255
+ 19e:	03 c0       	rjmp	.+6      	; 0x1a6 <UART_write_string+0x28>
+ 1a0:	c6 2f       	mov	r28, r22
+ 1a2:	8c 01       	movw	r16, r24
+ 1a4:	d0 e0       	ldi	r29, 0x00	; 0
+ 1a6:	f8 01       	movw	r30, r16
+ 1a8:	ed 0f       	add	r30, r29
+ 1aa:	f1 1d       	adc	r31, r1
+ 1ac:	80 81       	ld	r24, Z
+ 1ae:	81 11       	cpse	r24, r1
+ 1b0:	f2 cf       	rjmp	.-28     	; 0x196 <UART_write_string+0x18>
+				{
+					u8_retVal = UART_tx(n[x],uartNum);
+				}
+				u8_retVal = UART_tx('\0',uartNum);
+ 1b2:	6c 2f       	mov	r22, r28
+ 1b4:	0e 94 b0 00 	call	0x160	; 0x160 <UART_tx>
+ 1b8:	01 c0       	rjmp	.+2      	; 0x1bc <UART_write_string+0x3e>
+			}
+			break;
+		}
+		default:
+		{
+			u8_retVal = UART_ERROR_NOT_OK;
+ 1ba:	84 e0       	ldi	r24, 0x04	; 4
+			break;
+		}
+	}
+	
+	return u8_retVal ;
+ 1bc:	df 91       	pop	r29
+ 1be:	cf 91       	pop	r28
+ 1c0:	1f 91       	pop	r17
+ 1c2:	0f 91       	pop	r16
+ 1c4:	08 95       	ret
+
+000001c6 <_exit>:
+ 1c6:	f8 94       	cli
+
+000001c8 <__stop_program>:
+ 1c8:	ff cf       	rjmp	.-2      	; 0x1c8 <__stop_program>

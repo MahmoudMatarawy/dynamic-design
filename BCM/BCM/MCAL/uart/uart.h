@@ -14,7 +14,7 @@
 typedef uint8_t u8_uartErrorType;
 
 #define UART_ERROR_OK				((u8_uartErrorType)0x00)
-#define UART_ERROR_NOT_OK			((u8_uartErrorType)0x04)
+#define UART_ERROR_NOT_OK			((u8_uartErrorType)0x03)
 
 
 typedef enum

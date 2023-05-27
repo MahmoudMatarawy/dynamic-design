@@ -15,7 +15,7 @@
 typedef uint8_t u8_ledError_t;
 
 #define LED_ERROR_OK			((u8_ledError_t)0x00)
-#define LED_ERROR_NOT_OK		((u8_ledError_t)0x05)
+#define LED_ERROR_NOT_OK		((u8_ledError_t)0x04)
 
 typedef enum
 {
